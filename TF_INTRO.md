@@ -105,7 +105,7 @@ with tf.Session() as sess:
 ## Exemple d'un modèle de régression logistique
 
 Ces quelques lignes de codes permettent de produire un modèle de regression logistique à partir des données iris.
-Vous pouvez trouver des informations concernant cette dataset ici : https://scikit-learn.org/stable/datasets/index.html#iris-dataset
+Vous pouvez trouver des informations concernant cette dataset ici : https://scikit-learn.org/stable/datasets/index.html#iris-dataset ou https://www.kaggle.com/uciml/iris
 
 > Question 1 : Analyser précisément cet exemple afin de bien comprendre son fonctionnement. Attacher une importance particulière à la structuration des tableaux de données qui servent à l'apprentissage.
 
@@ -172,4 +172,4 @@ with tf.Session() as sess:
 print("Best theta : ", best_theta)
 ```
 
-> Question 2 : Modifier le code afin de produire un modèle de regression linéaire sur des données 2D et 3D.
+> Question 2 : Modifier le code afin de produire un modèle de regression logistique sur des données sur la dimension complète du problème.
