@@ -42,7 +42,7 @@ Dans ce dernier cas de figure, pour afficher les images et les labels de ces dat
 
 ```
 taille_batch = 10
-data = mnist.train.next_batch(image_count)
+data = mnist.train.next_batch(taille_batch)
 
 images = data[0]
 labels = data[1]
