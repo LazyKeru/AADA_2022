@@ -34,20 +34,31 @@ import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plot
 import cv2
+from tensorflow.examples.tutorials.mnist import input_data
 
 taille_batch=100
 epoch_nbr=3
 learning_rate=0.001
 
+mnist = input_data.read_data_sets('MNIST_data', one_hot=True)
+mnist_train_images=mnist.train.images/255
+mnist_train_labels=mnist.tran.labels
+mnist_test_images=mnist.test.images/255
+mnist_test_labels=mnist.test.labels
+
+"""
+# Si la dataset est sur votre drive
+
 mnist_train_images=np.fromfile("dataset/mnist/train-images.idx3-ubyte", dtype=np.uint8)[16:].reshape(-1, 28, 28, 1)/255
 mnist_train_labels=np.eye(10)[np.fromfile("dataset/mnist/train-labels.idx1-ubyte", dtype=np.uint8)[8:]]
 mnist_test_images=np.fromfile("dataset/mnist/t10k-images.idx3-ubyte", dtype=np.uint8)[16:].reshape(-1, 28, 28, 1)/255
 mnist_test_labels=np.eye(10)[np.fromfile("dataset/mnist/t10k-labels.idx1-ubyte", dtype=np.uint8)[8:]]
+"""
 
 ph_images=tf.placeholder(shape=(None, 28, 28, 1), dtype=tf.float32)
 ph_labels=tf.placeholder(shape=(None, 10), dtype=tf.float32)
 
-(..... A COMPLETER AVEC L'ARCHIECTURE DU RESEAU CONVOLUTIF ......)
+#(..... A COMPLETER AVEC L'ARCHIECTURE DU RESEAU CONVOLUTIF ......)
 
 with tf.Session() as s:
     s.run(tf.global_variables_initializer())
