@@ -30,9 +30,9 @@ mnist_test_labels=np.eye(10)[np.fromfile("dataset/mnist/t10k-labels.idx1-ubyte",
 from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets('MNIST_data', one_hot=True)
 mnist_train_images=mnist.train.images/255
-mnist_train_labels=mnist.tran.labels/255
+mnist_train_labels=mnist.tran.labels
 mnist_test_images=mnist.test.images/255
-mnist_test_labels=mnist.test.labels/255
+mnist_test_labels=mnist.test.labels
 ```
 La division par 255 permet d'avoir des valeurs d'entrée de réseau comprise entre 0 et 1.
 
