@@ -41,9 +41,9 @@ epoch_nbr=3
 learning_rate=0.001
 
 mnist = input_data.read_data_sets('MNIST_data', one_hot=True)
-mnist_train_images=mnist.train.images/255
+mnist_train_images=mnist.train.images.reshape(28,28)/255
 mnist_train_labels=mnist.tran.labels
-mnist_test_images=mnist.test.images/255
+mnist_test_images=mnist.test.images.reshape(28,28)/255
 mnist_test_labels=mnist.test.labels
 
 """
