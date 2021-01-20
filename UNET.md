@@ -55,7 +55,7 @@ Voici la structure du code qu'il vous faut compléter.
 > Question 2 : Donner les trois dimensions de chaque couche du réseau à l'aide d'un commentaire ***# nom_couche size1 x size2 x size3***
 
 L'apprentissage est à réaliser sur la base d'images ***lyft-udacity-challenge*** (https://www.kaggle.com/kumaresanmanickavelu/lyft-udacity-challenge) qu'il faudra placer sur votre drive.
-Afin de réduire le temps de transfert sur le Google drive et les temps de traitement, J'ai réduit la résolution des images à 160 x 120.
+Afin de réduire le temps de transfert sur le Google drive vous pouvez ne transférer que les dossier dataA et dataB. Afin de réduire les temps de traitement pendant l'apprentissage, j'ai réduit la résolution des images à 160 x 120 lors de la struturation des données pour l'apprentissage (avec ```cv2.resize()```).
 
 ```
 import cv2
@@ -179,12 +179,14 @@ with tf.Session() as s:
 
 ```
 
-Les labels qui ont été segmentés dans les images sont les suivants. Vous constaterez que les labels 1, 7, 9 et 10 que nous utilisons dans le code précédent sont respectivement Building, Road, Vegetation et Car. Vous pourrez vous amuser à changer les classes que vous souhaitez.
-
-Attention, plus il y a de classes à apprendre, plus le temps de convergence sera élevé (mais raisonnable). Par ailleurs, comme indiqué plus haut, la dimension de la sortie du réseau dépend du nombre de classe à apprendre.
- 
+Les labels qui ont été segmentés dans les images sont les suivants. 
 
 ![Labels de la dataset ***lyft-udacity-challenge***](label_lyft-udacity-challenge.png)
+
+Vous constaterez que les labels 1, 7, 9 et 10 que nous utilisons dans le code précédent sont respectivement Building, Road, Vegetation et Car. Vous pourrez vous amuser à changer les classes que vous souhaitez.
+
+Attention, plus il y a de classes à apprendre, plus le temps de convergence sera élevé (mais raisonnable). Par ailleurs, comme indiqué plus haut, la dimension de la sortie du réseau dépend du nombre de classe à apprendre.
+
 
 ## Script de test du modèle sauvegardé
 
