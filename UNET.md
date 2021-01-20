@@ -1,4 +1,4 @@
-# Sujet de projet AADA - janvier 2020
+# Sujet de projet AADA - janvier 2021
 
 Ce projet a pour objet de développer un réseau convolutif similaire au réseau appelé U-net capable de segmenter les objets contenus dans une image.
 
