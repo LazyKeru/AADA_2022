@@ -55,7 +55,7 @@ Voici la structure du code qu'il vous faut compléter.
 > Question 2 : Donner les trois dimensions de chaque couche du réseau à l'aide d'un commentaire ***# nom_couche size1 x size2 x size3***
 
 L'apprentissage est à réaliser sur la base d'images ***lyft-udacity-challenge*** (https://www.kaggle.com/kumaresanmanickavelu/lyft-udacity-challenge) qu'il faudra placer sur votre drive.
-Afin de réduire le temps de transfert sur le Google drive vous pouvez ne transférer que les dossier dataA et dataB. Afin de réduire les temps de traitement pendant l'apprentissage, j'ai réduit la résolution des images à 160 x 120 lors de la struturation des données pour l'apprentissage (avec ```cv2.resize()```).
+Afin de réduire le temps de transfert sur le Google drive vous pouvez ne transférer que les dossier dataA et dataB. Afin de réduire les temps de traitement pendant l'apprentissage, j'ai réduit la résolution des images à 160 x 120 lors du conditionnement des données pour l'apprentissage (avec ```cv2.resize()```).
 
 ```
 import cv2
