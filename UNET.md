@@ -34,7 +34,6 @@ result : représente la couche que nous cherchons à déconvoluer
 2 : est le valeur du stride
 ph_is_training : est la variable qui indiquera si nous sommes en apprentissage ou en test.
 ```
-Pour obtenir chaque couche, la taille des noyaux de déconvolution est de 3 et leur nombre sera (dans l'ordre d'application) : 64, 64, 32
 
 Pour obtenir chaque couche, la taille des noyaux de convolutions est de 3 et leur nombre sera (dans l'ordre d'application) : 64, 64, 32, 32, 16, 16
 
