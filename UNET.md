@@ -21,11 +21,11 @@ L'image d'entrée peut etre codée en niveau de gris ou en couleur selon le beso
 Le réseau se compose donc de deux parties. La première partie (située a gauche) définie par une succession de couches de convolution, d'activation et de max pooling comme vous l'avez déjà pratiqué lors des séances de TP.
 Nous travaillerons sur des images de faibles résolutions. Par conséquent, contrairement à ce qui est indiqué sur l'architecture précédente qui est définie pour les images d'entrée de résolution  572x572, dans notre cas d'usage, les couches successives feront appel respectivement aux nombres de filtres suivants : 16, 16, 32, 32, 64, 64, 128 et 128. Nous obtenons donc 8 feature maps. Contrairement au schema de l U-net, nous n implanterons pas la toute derniere ligne de transformation. Ainsi c est bien la derniere couche de convolution (128 filtres) qui va constituer l entree de la seconde partie du reseau.
 
-La seconde partie du réseau se compose d'une succession de couche de **déconvolution**, de convolution, de **concaténation** et d'activation. Aucune couche de max pooling ne compose la seconde partie du réseau. Deux nouveautés apparaissent ici. La couche de **déconvolution** et la couche de **concaténation**.
+La seconde partie du réseau se compose d'une succession de couche de **déconvolution** (ou **up-sampling**) (flèche rouge), de convolution, de **concaténation** et d'activation. Aucune couche de max pooling ne compose la seconde partie du réseau. Deux nouveautés apparaissent ici. La couche de **déconvolution** et la couche de **concaténation**.
 Puisqu'il s'agit d'estimer une image de résolution spatiale identique à l'image d'entrée, il est donc nécessaire d'appliquer les traitements capable d'augmenter la taille des volumes de données (l'inverse des max pooling). Pour cela, nous allons utiliser ces deux nouvelles fonctions. 
 
-La déconvolution est indiquée par la flèche rouge. Elle exploite la fonction ```tf.nn.conv2d_transpose()```
-Pour réaliser ce réseau, la fonction vous est donnée. Elle se nomme ```deconvolution``` et est appelée avec les paramètres suivants  ```d2=deconvolution(result, 3, 64, 2, ph_is_training)```. 
+Les couches de déconvolution sont à instancier avec la fonction ```tf.nn.conv2d_transpose()```.
+Pour réaliser ce réseau, la fonction vous est donnée dnas le code ci-après. Elle se nomme ```deconvolution``` et est appelée avec les paramètres suivants  ```d2=deconvolution(result, 3, 64, 2, ph_is_training)```. 
 
 ```
 result : représente la couche que nous cherchons à déconvoluer
