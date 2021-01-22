@@ -6,11 +6,9 @@ Un algorithme de segmentation permet de détecter chaque objet contenu dans une 
 
 Le reseau que je propose d'implanter prend donc en entree l'image a segmenter et infere en sortie une image dont le nombre de plan est egal au nombre dee classes dans lesquels nous souhaitons classer chaque pixel de l image d´entree. Par exemple, nous pourrions choisir de segmenter les batiments, les voitures, la vegetation : l´image de sortie serait alors composer de trois plans comme une image couleur.
 
-A titre d'illustration, les deux images suivantes représentent une image couleur acquise dans un environnement routier et le mask des pixels correspondant. Dans ce mask les pixels jaune appartiennent à la classe "signalisation verticale", les pixels vert appartiennent à la végétation.
+A titre d'illustration, les deux images suivantes représentent une image couleur acquise dans un environnement routier du simlulateur ***CARLA*** (http://carla.org) et le mask des pixels correspondant. Dans ce mask vous observez que les pixels ont une couleur différente fonction de leur appartenance : les pixels jaune appartiennent à la classe "signalisation verticale", les pixels d'un certain vert appartiennent à la végétation, les pixels gris appartiennent à la chaussée. 
 
-![Image acquise dans un environnement routier](imageroute.png)
-
-![Illustration d'une segmentation](imagerouteseg.png)
+![Image acquise dans un environnement routier avec son mask](carla_sample.jpg)
 
 Le réseau U-net est défini par l'architecture suivante :
 
