@@ -2,7 +2,9 @@
 
 Ce projet a pour objet de développer un réseau convolutif similaire au réseau appelé U-net capable de segmenter les objets contenus dans une image.
 
-Un algorithme de segmentation permet de détecter chaque objet contenu dans une image en identifiant les pixels qui composent chacun d'entre eux. Le résultat de la segmentation peut être représenté par plusieurs masks, chaque mask étant une image dans laquelle un pixel prend la valeur 1 lorsqu'il appartient à un même type d'objet et la valeur 0 lorsque le pixel n'appartient pas à cet objet.
+Un algorithme de segmentation permet de détecter chaque objet contenu dans une image en identifiant/labelisant chaque pixels qui composent chacun d'entre eux. Le résultat de la segmentation peut être représenté par plusieurs masks, chaque mask étant une image dans laquelle un pixel prend la valeur 1 lorsqu'il appartient à un même type d'objet et la valeur 0 lorsque le pixel n'appartient pas à cet objet.
+
+Le reseau que je propose d'implanter prend donc en entree l'image a segmenter et infere en sortie une image dont le nombre de plan est egal au nombre dee classes dans lesquels nous souhaitons classer chaque pixel de l image d´entree. Par exemple, nous pourrions choisir de segmenter les batiments, les voitures, la vegetation : l´image de sortie serait alors composer de trois plans comme une image couleur.
 
 A titre d'illustration, les deux images suivantes représentent une image couleur acquise dans un environnement routier et le mask des pixels correspondant. Dans ce mask les pixels jaune appartiennent à la classe "signalisation verticale", les pixels vert appartiennent à la végétation.
 
@@ -19,7 +21,7 @@ Dans cette architecture, l'entrée du réseau est à gauche et la sortie à droi
 L'image d'entrée peut etre codée en niveau de gris ou en couleur selon le besoin. La définition des flèches est renseignée sur le schéma précédent.
 
 Le réseau se compose donc de deux parties. La première partie (située a gauche) définie par une succession de couches de convolution, d'activation et de max pooling comme vous l'avez déjà pratiqué lors des séances de TP.
-Nous travaillerons sur des images de faibles résolutions. Par conséquent, contrairement à ce qui est indiqué sur l'architecture précédente qui est définie pour les images d'entrée de résolution  572x572, dans notre cas d'usage, les couches successives feront appel respectivement aux nombres de filtres suivants : 16, 16, 32, 32, 64, 64, 128 et 128. Nous obtenons donc 8 feature maps.
+Nous travaillerons sur des images de faibles résolutions. Par conséquent, contrairement à ce qui est indiqué sur l'architecture précédente qui est définie pour les images d'entrée de résolution  572x572, dans notre cas d'usage, les couches successives feront appel respectivement aux nombres de filtres suivants : 16, 16, 32, 32, 64, 64, 128 et 128. Nous obtenons donc 8 feature maps. Contrairement au schema de l U-net, nous n implanterons pas la toute derniere ligne de transformation. Ainsi c est bien la derniere couche de convolution (128 filtres) qui va constituer l entree de la seconde partie du reseau.
 
 La seconde partie du réseau se compose d'une succession de couche de **déconvolution**, de convolution, de **concaténation** et d'activation. Aucune couche de max pooling ne compose la seconde partie du réseau. Deux nouveautés apparaissent ici. La couche de **déconvolution** et la couche de **concaténation**.
 Puisqu'il s'agit d'estimer une image de résolution spatiale identique à l'image d'entrée, il est donc nécessaire d'appliquer les traitements capable d'augmenter la taille des volumes de données (l'inverse des max pooling). Pour cela, nous allons utiliser ces deux nouvelles fonctions. 
@@ -38,7 +40,7 @@ Pour obtenir chaque couche, la taille des noyaux de déconvolution est de 3 et l
 
 Pour obtenir chaque couche, la taille des noyaux de convolutions est de 3 et leur nombre sera (dans l'ordre d'application) : 64, 64, 32, 32, 16, 16
 
-La dernière convolution qui permet d'obtenir les différents masks de segmentation est réalisée avec un noyau de 1 et avec un nombre de filtre égal aux nombres de classes.
+La dernière convolution qui permet d'obtenir les différents masks de segmentation est réalisée avec un noyau de 1 et avec un nombre de filtre égal aux nombres de classes. Ainsi, la sortie sera une image avec un nombre de plan egal au nombre de classes retenues.
 
 Attention : après la déconvolution, nous devrez appliquer une couche d'activation (Relu) comme vous le faisiez après une couche de convolution.
 
