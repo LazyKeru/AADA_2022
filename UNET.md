@@ -8,7 +8,7 @@ Le reseau que je propose d'implanter prend donc en entree l'image a segmenter et
 
 A titre d'illustration, les deux images suivantes représentent une image couleur acquise dans un environnement routier du simlulateur ***CARLA*** (http://carla.org) et le mask des pixels correspondant. Dans ce mask vous observez que les pixels ont une couleur différente fonction de leur appartenance : les pixels jaune appartiennent à la classe "signalisation verticale", les pixels d'un certain vert appartiennent à la végétation, les pixels gris appartiennent à la chaussée. 
 
-![Image acquise dans un environnement routier avec son mask](carla_sample.jpg)
+![Image acquise dans un environnement routier avec son mask](carla_sample.jpeg)
 
 Le réseau U-net est défini par l'architecture suivante :
 
