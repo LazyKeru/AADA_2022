@@ -30,7 +30,7 @@ mnist_test_labels=np.eye(10)[np.fromfile("dataset/mnist/t10k-labels.idx1-ubyte",
 from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets('MNIST_data', one_hot=True)
 mnist_train_images=mnist.train.images/255
-mnist_train_labels=mnist.tran.labels
+mnist_train_labels=mnist.train.labels
 mnist_test_images=mnist.test.images/255
 mnist_test_labels=mnist.test.labels
 ```
@@ -110,7 +110,7 @@ train=tf.train.GradientDescentOptimizer(learning_rate).minimize(loss)
 accuracy=tf.reduce_mean(tf.cast(tf.equal(tf.argmax(scso, 1), tf.argmax(ph_labels, 1)), dtype=tf.float32))
 ```
 
-```ft.Session()``` démarre la session qui est appelé s.
+```tf.Session()``` démarre la session qui est appelé s.
 
 Cette session regroupe les différentes itérations d'apprentissage et les prédictions sur la base de test.
 
@@ -118,13 +118,13 @@ Il est important de noter que, puisque python se sert de l'indentation pour "reg
 
 ```
 with tf.Session() as s:
-    
+
     # Initialisation des variables
     s.run(tf.global_variables_initializer())
 
     tab_acc_train=[]
     tab_acc_test=[]
-    
+
     for id_entrainement in range(nbr_entrainement):
         print("ID entrainement", id_entrainement)
         for batch in range(0, len(mnist_train_images), taille_batch):
@@ -146,11 +146,11 @@ with tf.Session() as s:
             })
             # création le tableau des accuracies
             tab_acc.append(acc)
-        
-        # calcul de la moyenne des accuracies 
+
+        # calcul de la moyenne des accuracies
         print("accuracy train:", np.mean(tab_acc))
         tab_acc_train.append(1-np.mean(tab_acc))
-        
+
         # Prédiction du modèle sur les batchs du dataset de test
         tab_acc=[]
         for batch in range(0, len(mnist_test_images), taille_batch):
@@ -164,7 +164,7 @@ with tf.Session() as s:
         resulat=s.run(scso, feed_dict={ph_images: mnist_test_images[0:taille_batch]})
    ```
 La dernière ligne de cette session applique de modèle ainsi obtenu sur un batch d'images de test. le résultat sera ensuite affiché (courbe et décision).
-   
+
    Ici on affiche la courbe qui permet de voir comment l'apprentissage a évolué au cours des itérations.
    ```
     plot.ylim(0, 1)
@@ -175,13 +175,13 @@ La dernière ligne de cette session applique de modèle ainsi obtenu sur un batc
     plot.show()
    ```
    Affiche le résultat obtenu pour chaque image test du batch.
-   ```
-   np.set_printoptions(formatter={'float': '{:0.3f}'.format})
-    for image in range(taille_batch):
-        print("image", image)
-        print("sortie du réseau:", resulat[image], np.argmax(resulat[image]))
-        print("sortie attendue :", mnist_test_labels[image], np.argmax(mnist_test_labels[image]))
-        cv2.imshow('image', mnist_test_images[image].reshape(28, 28))
-        if cv2.waitKey()&0xFF==ord('q'):
-            break
+```
+np.set_printoptions(formatter={'float': '{:0.3f}'.format})
+for image in range(taille_batch):
+  print("image", image)
+  print("sortie du réseau:", resulat[image], np.argmax(resulat[image]))
+  print("sortie attendue :", mnist_test_labels[image], np.argmax(mnist_test_labels[image]))
+  cv2.imshow('image', mnist_test_images[image].reshape(28, 28))
+  if cv2.waitKey()&0xFF==ord('q'):
+    break   
 ```
