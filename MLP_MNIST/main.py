@@ -21,10 +21,21 @@ def load_data():
     return mnist_train_images, mnist_test_images, mnist_train_labels, mnist_test_labels
 
 
-# src.print_image(src.load_image(path_mnist_train_images, 16))
+#src.print_image(src.load_image(path_mnist_train_images, 16))
 
 X_train, X_test, y_train, y_test = load_data()
 
-src.test(X_train, y_test, y_train, X_test)
+## The shapes
+print(X_train.shape) # (60000, 28, 28)
+print(y_train.shape) # (60000, 10)
+print(X_test.shape) # (10000, 28, 28)
+print(y_test.shape) # (10000, 10)
+## For X_train we want (60000, 784)
+X_train = X_train.reshape(X_train.shape[0], 784)
+X_test = X_test.reshape(X_test.shape[0], 784)
+print(X_train.shape) # (60000, 784)
+print(X_test.shape) # (10000, 784)
+
+src.test(X_train, X_test, y_train, y_test)
 
 # src.print_images(X_test[10:15])
