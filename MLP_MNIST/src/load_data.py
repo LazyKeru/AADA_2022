@@ -35,7 +35,7 @@ def load_images(path):
         # rest is the image pixel data, each pixel is stored as an unsigned byte
         image_data = f.read()
         images = np.frombuffer(image_data, dtype=np.uint8).astype(np.float32)\
-            .reshape((image_count, row_count, column_count))
+            .reshape((image_count, row_count, column_count,1))
         print(images)
         print(f"Done loading the images from {path}")
         return images

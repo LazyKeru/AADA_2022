@@ -2,13 +2,13 @@
 import os
 import src
 
-path_mnist_train_images = (os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), '.')),'dataset/train-images-idx3-ubyte.gz'))
+path_mnist_train_images = (os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')),'dataset/train-images-idx3-ubyte.gz'))
 #
-path_mnist_train_labels = (os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), '.')),'dataset/train-labels-idx1-ubyte.gz'))
+path_mnist_train_labels = (os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')),'dataset/train-labels-idx1-ubyte.gz'))
 #
-path_mnist_test_images = (os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), '.')),'dataset/t10k-images-idx3-ubyte.gz'))
+path_mnist_test_images = (os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')),'dataset/t10k-images-idx3-ubyte.gz'))
 #
-path_mnist_test_labels = (os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), '.')),'dataset/t10k-labels-idx1-ubyte.gz'))
+path_mnist_test_labels = (os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')),'dataset/t10k-labels-idx1-ubyte.gz'))
 
 
 def load_data():

@@ -13,12 +13,12 @@ _LEARNING_RATE = 0.001
 #One of the most straightforward method is to scale it to a range from 0 to 1:
 # xn = (x - m)/(xmax-xmin)
 #we are using tf's batch_normalization()
-def normalisation(couche_prec):
+def normalisation(previous_layer):
     # create a norm layer after each convolution layer and first fully connected layer
-    mean, var=tf.nn.moments(couche_prec, [0])
-    scale=tf.Variable(tf.ones(shape=(np.shape(couche_prec)[-1])))
-    beta=tf.Variable(tf.zeros(shape=(np.shape(couche_prec)[-1])))
-    result=tf.nn.batch_normalization(couche_prec, mean, var, beta, scale, 0.001)
+    mean, var=tf.nn.moments(previous_layer, [0])
+    scale=tf.Variable(tf.ones(shape=(np.shape(previous_layer)[-1])))
+    beta=tf.Variable(tf.zeros(shape=(np.shape(previous_layer)[-1])))
+    result=tf.nn.batch_normalization(previous_layer, mean, var, beta, scale, 0.001)
     return result
 
 
@@ -37,7 +37,7 @@ def convolution(previous_layer, size_core, nbr_core):
 def fc(previous_layer, nbr_neurone):
     w=tf.Variable(tf.random.truncated_normal(shape=(int(previous_layer.shape[-1]), nbr_neurone), dtype=tf.float32))
     b=tf.Variable(np.zeros(shape=(nbr_neurone)), dtype=tf.float32)
-    result=tf.matmul(couche_prec, w)+b
+    result=tf.matmul(previous_layer, w)+b
     return result
 
 def CNN(X_train,
@@ -75,9 +75,8 @@ def CNN(X_train,
     result=tf.nn.relu(result)
     result=tf.nn.max_pool(result, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
 
-    result = tf.keras.Input((28, 28, 1))
-    y = tf.keras.layers.Flatten()(result)
-    result = tf.keras.Model(result, y)
+    #REplaces the deprecated flatten
+    result=tf.reshape(result, [-1, result.shape[1]*result.shape[2]*result.shape[3]])
 
     result=fc(result, 512)
     result=normalisation(result)
@@ -99,21 +98,21 @@ def CNN(X_train,
         s.run(tf.compat.v1.global_variables_initializer())
 
         # To have a clear view of our session progress
-        tab_acc_train=[]
-        tab_acc_test=[]
+        tab_train=[]
+        tab_test=[]
 
         for id_entrainement in np.arange(epoch_nbr):
             print("ID entrainement", id_entrainement)
-
             tab_accuracy_train=[]
             tab_accuracy_test=[]
-
             for batch in np.arange(0, len(X_train), taille_batch):
                 # lancement de l'apprentissage en passant la commande "train"
-                s.run(train, feed_dict={
+                precision=s.run(train, feed_dict={
                     ph_images: X_train[batch:batch+taille_batch],
                     ph_labels: y_train[batch:batch+taille_batch]
                 })
+                tab_accuracy_train.append(precision)
+                print(f"precision: {precision}")
                 pass
 
             for batch in np.arange(0, len(X_test), taille_batch):
@@ -123,6 +122,7 @@ def CNN(X_train,
                     ph_labels: y_test[batch:batch+taille_batch]
                 })
                 tab_accuracy_test.append(precision)
+                print(f"precision: {precision}")
                 pass
             print("  train:", np.mean(tab_accuracy_train))
             tab_train.append(1-np.mean(tab_accuracy_train))
