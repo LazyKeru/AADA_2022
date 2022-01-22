@@ -107,7 +107,11 @@ def CNN(X_train,
             tab_accuracy_test=[]
             for batch in np.arange(0, len(X_train), taille_batch):
                 # lancement de l'apprentissage en passant la commande "train"
-                precision=s.run(train, feed_dict={
+                s.run(train, feed_dict={
+                    ph_images: X_train[batch:batch+taille_batch],
+                    ph_labels: y_train[batch:batch+taille_batch]
+                })
+                precision=s.run(accuracy, feed_dict={
                     ph_images: X_train[batch:batch+taille_batch],
                     ph_labels: y_train[batch:batch+taille_batch]
                 })
