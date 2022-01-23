@@ -12,4 +12,4 @@ from .print_dataset import print_images
 
 # Functions CNN
 
-from .CNN import CNN
+from .CNN_reworked import CNN
