@@ -10,6 +10,23 @@ from .load_data import load_images
 from .print_dataset import print_image
 from .print_dataset import print_images
 
-# Functions CNN
+# Functions Train
 
-from .CNN_reworked import CNN
+from .train import train
+
+# Functions Layers
+
+from .layers import normalisation
+from .layers import convolution
+from .layers import fc
+from .layers import maxpool
+
+# Functions Model Builed
+
+from .model_builder import default_CNN
+from .model_builder import test1_CNN
+from .model_builder import test2_CNN
+
+# Functions Show Result
+
+from .show_result import show_result

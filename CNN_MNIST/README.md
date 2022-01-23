@@ -4,9 +4,23 @@ Convolutional Neural Network (CNN) is a type of deep neural network primarily us
 
 Convolutional networks were inspired by biological processes in that the connectivity pattern between neurons resembles the organization of the animal visual cortex.
 
-# Obtained result
+# Obtained result default model
 
 train accuracy : 0.97
+test accuracy : 0.96
+
+We obtained better result with the CNN of our teacher than the MLP
+
+# Obtained result default model
+
+train accuracy : 0.97
+test accuracy : 0.96
+
+We obtained better result with the CNN of our teacher than the MLP
+
+# Obtained result default model
+
+train accuracy : 0.96
 test accuracy : 0.96
 
 We obtained better result with the CNN of our teacher than the MLP
